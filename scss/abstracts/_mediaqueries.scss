@@ -2,10 +2,6 @@
     .colors{
         &__color{
             width: 14rem;
-
-        &:hover .colors__circle{
-            transform: none;
-        }
         }
     }
 }

@@ -1,16 +1,15 @@
 const colors = document.getElementsByClassName("colors__color");
-let secondColor = false;
 
 for(let i = 0; i < colors.length; i++){
-    // Set color
-    if(secondColor === false){
-        colors[i].children[0].style.background = "#6096B4"
-        secondColor = true;
-    }
-    else{
-        colors[i].children[0].style.background = "#F48484"
-        secondColor = false;
-    }
+
+    // colors[i].style.animationDelay = i/10 + "s";
+
+    let randomHue = Math.floor(Math.random() * (360 - 1) + 1);
+    let randomSaturation = Math.floor(Math.random() * (79 - 11) + 11) + "%";
+    let randomLightness = Math.floor( Math.random() * (100 - 1) + 11) + "%";
+
+
+    colors[i].children[0].style.background = `hsl(${randomHue} ${randomSaturation} ${randomLightness})`;
 
     // onclick
     colors[i].onclick = function(){
