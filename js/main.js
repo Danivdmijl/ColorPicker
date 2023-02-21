@@ -33,6 +33,8 @@ class ColorCard{
 
     onHTMLElementClicked = () =>{
         this.circle.classList.add("colors__circle--selected");
+        document.title = this.color;
+        window.navigator.clipboard.writeText(this.color);
     }
 
     render() {
@@ -42,4 +44,17 @@ class ColorCard{
     }
 }
 
-const test = new ColorCard(101, "hsl(284,52%,36%",document.getElementById("js--colors"));
+
+for(let i = 1; i < 101; i++){
+
+    // colors[i].style.animationDelay = i/10 + "s";
+
+    let randomHue = Math.floor(Math.random() * (360 - 1) + 1);
+    let randomSaturation = Math.floor(Math.random() * (79 - 11) + 11) + "%";
+    let randomLightness = Math.floor( Math.random() * (100 - 1) + 11) + "%";
+
+    let hsl = `hsl(${randomHue}, ${randomSaturation}, ${randomLightness})`
+    new ColorCard(i, hsl, document.getElementById("js--colors"));
+
+
+}
