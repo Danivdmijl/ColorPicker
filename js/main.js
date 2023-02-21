@@ -1,20 +1,45 @@
-const colors = document.getElementsByClassName("colors__color");
+class ColorCard{
+    id;
+    color;
+    addToList;
+    htmlElement;
+    circle;
+    text;
 
-for(let i = 0; i < colors.length; i++){
+    constructor(newId, newColor, addToList) {
+        /*Properties voor het vakje */
+        this.id = newId;
+        this.color = newColor;
+        this.addToList = addToList;
 
-    // colors[i].style.animationDelay = i/10 + "s";
+        // HTMLElement renderen van JS naar html
+        this.htmlElement = document.createElement("li");
+        this.htmlElement.classList = "colors__color";
 
-    let randomHue = Math.floor(Math.random() * (360 - 1) + 1);
-    let randomSaturation = Math.floor(Math.random() * (79 - 11) + 11) + "%";
-    let randomLightness = Math.floor( Math.random() * (100 - 1) + 11) + "%";
+        this.circle = document.createElement("figure");
+        this.circle.classList = "colors__circle";
+        this.circle.style.background = this.color;
 
+        this.text = document.createElement("p");
+        this.text.innerText = "Copied";
+        this.text.classList = "colors__text";
+        
+        this.htmlElement.onclick = this.onHTMLElementClicked;
 
-    colors[i].children[0].style.background = `hsl(${randomHue} ${randomSaturation} ${randomLightness})`;
+        // Render word uitgevoerd
+        this.render();
 
-    // onclick
-    colors[i].onclick = function(){
-        colors[i].children[0].classList.add("colors__circle--selected");
-        navigator.clipboard.writeText(colors[i].children[0].style.background);
-        document.title = colors[i].children[0].style.background; 
+    }
+
+    onHTMLElementClicked = () =>{
+        this.circle.classList.add("colors__circle--selected");
+    }
+
+    render() {
+        this.htmlElement.appendChild(this.circle);
+        this.htmlElement.appendChild(this.text);
+        this.addToList.appendChild(this.htmlElement);
     }
 }
+
+const test = new ColorCard(101, "hsl(284,52%,36%",document.getElementById("js--colors"));
